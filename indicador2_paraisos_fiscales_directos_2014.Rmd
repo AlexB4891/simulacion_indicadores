@@ -1,0 +1,167 @@
+---
+title: "2.Indicador concentración de paraísos fiscales año 2014"
+
+author: "Alex Bajaña"
+date: "2022-10-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+***
+## FICHA METODOLÓGICA
+***
+
+#### Nombre del Indicador:  
+Tratamiento a nivel 2014"
+
+***
+#### Definición
+La participación directa en paraisos fiscales al año 2014.
+
+***
+## Fórmula del cálculo
+***
+
+$$P = \sum_i^n{p_{i}/n}$$
+
+Donde:
+
+P : participación efectiva en paraísos fiscales
+
+i : beneficiarios finales en paraísos fiscales
+
+$\sum_i^n{p_{i}/n}$ : promedio de la participación de los beneficiarios finales en los paraisos fiscales dentro de las empresas para el año 2014
+
+***
+
+
+***
+## DEFINICIÓN DE LAS VARIABLES RELACIONADAS
+***
+
+Para el cálculo del tratamiento continuo de uso de paraísos fiscales, se tomará en cuenta:
+
+* **Porcentaje efectivo de participacion**: es el porcentaje de propiedad en la emmpresa informante que tiene cada individuo declarado o informado en el Anexo APS
+
+* **Identificador del informante** es la empresa informante
+
+* **Año fiscal**: año fiscal declarado
+
+***
+## METODOLOGÍA DE CÁLCULO
+***
+
+Es la participacion efectiva declarada por el informante
+
+$$P = \sum_i^n{p_{i}/n}$$
+
+
+#### LIMITACIONES TÉCNICAS
+
+Se considera a todos los informantes del Anexo APS que hayan declarado formulario al impuesto a la renta.
+
+#### UNIDAD DE MEDIDA DEL INDICADOR
+
+porcentaje efectivo
+
+#### INTERPRETACIÓN DEL INDICADOR
+
+Participación efectiva que tienen las empresas en paraísos fiscales durante el año 2014
+
+#### FUENTE DE DATOS
+
+Anexo APS
+
+#### PERIODICIDAD DEL INDICADOR Y LAS VARIABLES
+
+Anual
+
+#### DISPONIBILIDAD DE LOS DATOS
+
+Desde el 2012 al 2020
+
+
+#### RELACIÓN CON INSTRUMENTOS DE PLANIFICACIÓN NACIONAL O ACUERDOS, INICIATIVAS INTERNACIONALES
+
+Normas que rigen la presentación del Anexo APS y Ley Orgánica de Régimen Tributario Interno (LORTI)
+
+#### FECHA DE ELABORACIÓN DE LA FICHA METODOLÓGICA
+
+09/10/2022
+
+
+
+
+***
+### Código Rstudio
+***
+
+```{r echo=T}
+
+# Paquetes ----------------------------------------------------------------
+
+#install.packages("gt")
+#install.packages("flextable")
+#install.packages("magrittr")
+
+
+
+
+# Librerias ---------------------------------------------------------------
+
+library(tidyverse)
+library(readr)
+library(gt)
+library(scales)
+library(rlang)
+library(ggplot2)
+library(flextable)
+library(magrittr)
+
+# Lectura de la tabla general ---------------------------------------------
+
+tabla_simulada <- readRDS("C:/Users/andre/Downloads/tabla_simulada.rds")
+
+
+
+# Indicador de Tratamiento directo de uso de paraísos fiscales 2014 -------
+
+
+# Estadisticas descriptivas año 2014 --------------------------------------
+
+
+year_2014 <- tabla_simulada %>% 
+  filter(anio_fiscal == 2014)
+
+tabla2 <-year_2014 %>% 
+  group_by(anio_fiscal) %>% 
+  summarize( mean = mean(mean),
+             na.rm = TRUE,
+             sd = sd(sd),
+             median = median(median))
+
+
+
+flextable(tabla2) %>% 
+  theme_vanilla() %>% 
+  autofit() %>% 
+  add_footer_lines("Anexo APS") %>% 
+  color(part = "footer", color = "#755440") %>% 
+  set_caption(caption = "Estadisticas descriptivas paraísos fiscales año 2014")
+
+
+
+# Histograma --------------------------------------------------------------
+
+
+hist(year_2014$beneficiarios_pff)
+
+```
+
+
+
+
+
