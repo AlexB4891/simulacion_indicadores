@@ -1,0 +1,108 @@
+---
+title: "Ficha metodológica para indicadores fiscales"
+
+author: "Alex Bajaña"
+date: "2022-10-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+***
+## Datos del Indicador
+***
+
+#### Nombre del Indicador:  
+
+Indicador de Herfindahl e Hirschman
+
+***
+#### Definición
+
+Es la concentración económica de un mercado
+
+***
+#### Fórmula del cálculo
+
+
+$$HHI_{i} = \sum_{j=1}^{N_i} {p_{i,j}^{2}}$$
+
+Donde:
+
+HHI : indicador de Herfindahl e Hirschman
+
+i: empresas o sociedades
+
+j: accionistas en la empresa i
+
+p_{i}: todos los individuos que estén en paraísos fiscales por empresas y accionistas de empresas
+
+N_{i}: todas las empresas
+
+
+***
+## Definición de las variables involucradas
+
+
+Para el indicador de Herfindahl e Hirschman que muestra la concentración de beneficiarios finales en paraísos fiscales en cada empresa, se tomará en cuenta:
+
+* Anexo APS:
+    -   La participación de cada beneficiario final j en la empresa i
+
+    -   La residencia del beneficiario final en paraísos fiscales
+
+    -   Año fiscal**: año fiscal declarado
+
+***
+## Metodología de cálculo
+
+En el Anexo APS se tienen todos los participes en forma directa o indirecta en la propiedad de la sociedad informante. 
+
+1. Primero se calcula el cuadrado de las participaciones de cada accionista en su respectiva empresa
+
+2. Se suma todos las participaciones de cada empresa 
+
+
+#### Limitaciones técnicas
+
+Se considera a todos los informantes del Anexo APS que hayan declarado formulario al impuesto a la renta.
+
+***
+
+#### Unidad de medida del indicador
+
+participación de un accionista por cada empresa
+
+***
+
+#### Interpretación del indicador
+
+Mide que tan concentrado esta el uso de paraísos fiscales en relación a todas las sociedades del Ecuador
+
+***
+
+### Metadatos
+
+#### Fuente de datos
+
+Anexo APS
+
+#### Periodicidad del indicador y de las variables
+
+Anual
+
+#### Disponiblidad de los datos
+
+Desde el 2012 al 2020
+
+#### Relación con instrumentos de planificación nacional o acuerdos, iniciativas internacionales
+
+*	Ley Orgánica de Régimen Tributario Interno (LORTI)
+
+*	Reglamento para la aplicación de la Ley Orgánica de Régimen Tributario Interno (RALORTI)
+
+
+#### Periodo de elaboración
+Noviembre, 2022
