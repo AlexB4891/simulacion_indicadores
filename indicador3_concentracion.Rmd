@@ -1,5 +1,5 @@
 ---
-title: "Fichas metodologicas para indicadores fiscales"
+title: "Fichas metodológicas para indicadores fiscales"
 subtitle: "Banco mundial"
 author: "Alex Bajaña"
 date: "2022-10-22"
