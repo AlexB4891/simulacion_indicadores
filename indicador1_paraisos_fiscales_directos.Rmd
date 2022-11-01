@@ -1,165 +1,153 @@
 ---
-title: "1.Indicador concentración de paraísos fiscales"
-
+title: "Fichas metodologicas para indicadores fiscales"
+subtitle: "Banco mundial"
 author: "Alex Bajaña"
 date: "2022-10-22"
-output: html_document
+output: word_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE,message = FALSE,warning = FALSE)
 ```
 
-***
-## FICHA METODOLÓGICA
-***
+## Datos del indicador
 
-#### Nombre del Indicador:  
-Tratamiento continuo de uso de paraísos fiscales"
+### Nombre del Indicador
 
-***
-#### Definición
-El promedio de la participación directa en paraisos fiscales del período 2012-2014.
+Tratamiento continuo de uso de paraísos fiscales
 
 ***
-## Fórmula del cálculo
+
+### Definición
+
+Dado el porcentaje de participación efectiva con residencia en paraisos fiscales que declaran las sociedades se calcula como el promedio de esta participación de los valores anuales en el periodo 20012-2014 para cada empresa.
+
 ***
 
-$$P = \sum_i^n{p_{i}/n}$$
+### Fórmula del cálculo
+
+
+$$PPF\_1214_i =\sum_{t = 2012}^{2014} \frac{p_{ti}}{3}$$
 
 Donde:
 
-P : participación efectiva en paraísos fiscales
+$p_{ti}$ : participación efectiva en paraísos fiscales de la empresa $i$ en el año $t$
 
-i : beneficiarios finales en paraísos fiscales
+$i$ : beneficiarios finales en paraísos fiscales
 
-$\sum_i^n{p_{i}/n}$ : promedio de la participación de los beneficiarios finales en los paraisos fiscales dentro de las empresas por el periodo 
-
-***
-
+$PPF\_1214_i$ : promedio de la participación de los beneficiarios finales con residencia en paraisos de las empresas durante el periodo **pre-reforma.**
 
 ***
-## DEFINICIÓN DE LAS VARIABLES RELACIONADAS
-***
+
+### Definición de las variables involucradas
+
 
 Para el cálculo del tratamiento continuo de uso de paraísos fiscales, se tomará en cuenta:
 
-* **Porcentaje efectivo de participacion**: es el porcentaje de propiedad en la emmpresa informante que tiene cada individuo declarado o informado en el Anexo APS
+* **Anexo APS:**
 
-* **Identificador del informante** es la empresa informante
+  * **Porcentaje efectivo de participacion**: es el porcentaje de propiedad en la emmpresa informante que tiene cada beneficiario final declarado o informado en el Anexo APS
 
-* **Año fiscal**: año fiscal declarado
+  * **Identificador del informante** Identificador anónimo de la empresa informante
+
+  * **Año fiscal**: año fiscal declarado en el Anexo APS
 
 ***
-## METODOLOGÍA DE CÁLCULO
+
+### Metodología de cálculo
+
+1. Se determinan las sociedades que hayan declarado impuesto a la renta en los años del periodo
+
+2. Se excluyen aquellas empresas que presentan inconsistencias en la declaración. 
+
+3. Se agrupan los datos por: año fiscal, identificación, país de residencia del beneficiario final
+
+4. Se suman todos los valores de participación efectiva dentro de los grupos mencionados.
+
+5. Se calcula el indicador de acuerdo a la formula presentada. 
+
+
+### Limitaciones técnicas
+
+- Se considera a todos los informantes del Anexo APS que hayan declarado formulario al impuesto a la renta. 
+- Para el análisis no se consideran las correcciones en la presentación de años pasados.
+- La tasa de omisión del anexo APS información se presenta a continuación:
+
+```{r}
+source(file = "tabla_inconsistencias.R",chdir = T)
+
+ft_inconsistencias
+
+```
+
 ***
 
-Es el promedio de la participacion efectiva declarada por el informante
+### Unidad de medida del indicador
 
-$$P = \sum_i^n{p_{i}/n}$$
+Porcentaje promedio
 
+***
 
-#### LIMITACIONES TÉCNICAS
+### Interpretación del indicador
 
-Se considera a todos los informantes del Anexo APS que hayan declarado formulario al impuesto a la renta.
+Participación efectiva promedio que tuvieron las empresas en paraísos fiscales durante el periodo 2012-2014
 
-#### UNIDAD DE MEDIDA DEL INDICADOR
+***
 
-porcentaje promedio
+## Metadatos 
 
-#### INTERPRETACIÓN DEL INDICADOR
-
-Participación promedio que tienen las empresas en paraísos fiscales durante el periodo 2012-2014
-
-#### FUENTE DE DATOS
+### Fuente de información
 
 Anexo APS
 
-#### PERIODICIDAD DEL INDICADOR Y LAS VARIABLES
+### Periodicidad del indicador y de las variables
 
 Anual
 
-#### DISPONIBILIDAD DE LOS DATOS
+### Disponibilidad de los datos
 
 Desde el 2012 al 2020
 
 
-#### RELACIÓN CON INSTRUMENTOS DE PLANIFICACIÓN NACIONAL O ACUERDOS, INICIATIVAS INTERNACIONALES
-
-Normas que rigen la presentación del Anexo APS y Ley Orgánica de Régimen Tributario Interno (LORTI)
-
-#### FECHA DE ELABORACIÓN DE LA FICHA METODOLÓGICA
-
-09/10/2022
+#### Relación con instrumentos de planificación nacional o acuerdos, iniciativas internacionales
 
 
+- Ley Orgánica de Régimen Tributario Interno (LORTI)
 
+- Reglamento para la aplicación de la  Ley Orgánica de Régimen Tributario Interno (RALORTI)
+
+### Periodo de elaboración
+
+Octubre, 2022
 
 ***
-## Código Rstudio
-***
 
-```{r echo=T}
+## Distribución del indicador
 
-# Paquetes} ---------------------------------------------------------------
+#### Grafico 1. Distribucion de la participación promedio en paraisos fiscales en el periodo 2012 - 2014
 
-#install.packages("gt")
-#install.packages("flextable")
-#install.packages("magrittr")
+```{r}
 
+source("indicador_1.R",chdir = T)
 
-# Librerias ---------------------------------------------------------------
+grafico_distribucion
 
-library(tidyverse)
-library(readr)
-library(gt)
-library(scales)
-library(rlang)
-library(ggplot2)
-library(flextable)
-library(magrittr)
+```
 
-# Lectura de la tabla general ---------------------------------------------
+#### Tabla 1. Resumen de la distribución
 
-tabla_simulada <- readRDS("C:/Users/andre/Downloads/tabla_simulada.rds")
+```{r}
 
-
-
-# Indicador de Tratamiento continuo de uso de paraísos fiscales -----------
-
-# Tabla de estadistica descriptiva para el periodo 2012-2014 --------------
-
-year_2012_2014 <- tabla_simulada %>% 
-  filter(anio_fiscal <= 2014)
-  
-
-
-tabla1 <-year_2012_2014 %>% 
-  group_by(anio_fiscal) %>% 
-  summarize( mean = mean(beneficiarios_pff),
-             na.rm = TRUE,
-             sd = sd(beneficiarios_pff),
-             median = median(beneficiarios_pff))
-
-
-flextable(tabla1) %>% 
-  theme_vanilla() %>% 
-  autofit() %>% 
-  add_footer_lines("Anexo APS") %>% 
-  color(part = "footer", color = "#666669") %>% 
-  set_caption(caption = "Estadisticas descriptivas paraísos fiscales")
-  
-
-
-
-# Histograma --------------------------------------------------------------
-
-
-hist(year_2012_2014$beneficiarios_pff)
+resumen_general
 
 ```
 
 
+## Estadísticas anuales del indicador
+
+```{r}
+estadistica_preliminar
+```
 
 
 
