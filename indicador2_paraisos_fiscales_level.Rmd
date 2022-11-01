@@ -1,5 +1,5 @@
 ---
-title: "Ficha metodológica para indicadores fiscales"
+title: "Fichas metodológicas para indicadores fiscales"
 subtitle: "Banco mundial"
 author: "Alex Bajaña"
 date: "2022-10-22"
@@ -10,43 +10,39 @@ output: word_document
 knitr::opts_chunk$set(echo = FALSE,message = FALSE,warning = FALSE)
 ```
 
-## Datos del Indicador
+## Datos del indicador
 
-### Nombre del Indicador:  
+### Nombre del Indicador
 
-Indicador de Herfindahl e Hirschman para la participación efectiva de beneficiarios finales con residencia en paraisos fiscales
+Tratamiento continuo de uso de paraísos fiscales (nivel 2014)
 
 ***
 
 ### Definición
 
-Medida de concentración promedio de participación de beneficiarios finales con residencia en paraisos fiscales
+Dado el porcentaje de participación efectiva con residencia en paraisos fiscales que declaran las sociedades se toma el valor correspondiente al año 2014.
 
 ***
 
 ### Fórmula del cálculo
 
 
-$$HHI_{i} = \sum_{j=1}^{N_i} {p_{i,j}^{2}}$$
+$$PF\_14_i = p_{ it = 2014}$$
 
 Donde:
 
-$p_{ti}^2$ : participación efectiva al cuadrado  en paraísos fiscales de la empresa $i$ para el accionista $j$
+$p_{it}$ : participación efectiva en paraísos fiscales de la empresa $i$ en el año $t = 2014$
 
-$i$: empresas o sociedades
+$i$ : beneficiarios finales en paraísos fiscales
 
-$j$: accionistas en la empresa i
-
-$HHI_i$ : indicador de Herfindahl e Hirschman
-
-$N_i$: todas las empresas
-
+$PF\_14_i$ : participación de los beneficiarios finales con residencia en paraisos de las empresas durante el año 2014
 
 ***
+
 ### Definición de las variables involucradas
 
 
-Para el indicador de Herfindahl e Hirschman que muestra la concentración de beneficiarios finales en paraísos fiscales en cada empresa, se tomará en cuenta:
+Para el cálculo del tratamiento a nivel 2014 de uso de paraísos fiscales, se tomará en cuenta:
 
 * **Anexo APS:**
 
@@ -55,31 +51,22 @@ Para el indicador de Herfindahl e Hirschman que muestra la concentración de ben
   * **Identificador del informante** Identificador anónimo de la empresa informante
 
   * **Año fiscal**: año fiscal declarado en el Anexo APS
-  
 
 ***
 
 ### Metodología de cálculo
 
-En el Anexo APS se tienen todos los participes en forma directa o indirecta en la propiedad de la sociedad informante. 
-
 1. Se determinan las sociedades que hayan declarado impuesto a la renta en los años del periodo
 
 2. Se excluyen aquellas empresas que presentan inconsistencias en la declaración. 
 
-3. Se agrupan los datos por: año fiscal, identificación del informante
-
-4. Se suman todos los valores al cuadrado de la participación efectiva dentro de los grupos mencionados.
-
-5. Se calcula el indicador de acuerdo a la formula presentada. 
-
+3. Se filtran los datos para el año 2014
 
 ### Limitaciones técnicas
 
 - Se considera a todos los informantes del Anexo APS que hayan declarado formulario al impuesto a la renta. 
 - Para el análisis no se consideran las correcciones en la presentación de años pasados.
 - La tasa de omisión del anexo APS información se presenta a continuación:
-
 
 ```{r}
 source(file = "tabla_inconsistencias.R",chdir = T)
@@ -88,23 +75,23 @@ ft_inconsistencias
 
 ```
 
-
 ***
 
 ### Unidad de medida del indicador
 
-porcentaje de concentracion de una empresa en los paraisos fiscales
+Porcentaje de participaciòn
+
 ***
 
 ### Interpretación del indicador
 
-El índice considera el cuadrado de la cuota de mercado que cada empresa posee y suma esas cantidades.
+Participación efectiva en paraisos fiscales en el año 2014
 
 ***
 
-## Metadatos
+## Metadatos 
 
-### Fuente de datos
+### Fuente de información
 
 Anexo APS
 
@@ -112,20 +99,21 @@ Anexo APS
 
 Anual
 
-### Disponiblidad de los datos
+### Disponibilidad de los datos
 
 Desde el 2012 al 2020
 
+
 #### Relación con instrumentos de planificación nacional o acuerdos, iniciativas internacionales
 
-*	Ley Orgánica de Régimen Tributario Interno (LORTI)
 
-*	Reglamento para la aplicación de la Ley Orgánica de Régimen Tributario Interno (RALORTI)
+- Ley Orgánica de Régimen Tributario Interno (LORTI)
 
+- Reglamento para la aplicación de la  Ley Orgánica de Régimen Tributario Interno (RALORTI)
 
 ### Periodo de elaboración
 
-Noviembre, 2022
+Octubre, 2022
 
 ***
 
@@ -135,7 +123,7 @@ Noviembre, 2022
 
 ```{r}
 
-source("indicador_4.R",chdir = T)
+source("indicador_2.R",chdir = T)
 
 grafico_distribucion
 
@@ -155,5 +143,7 @@ resumen_general
 ```{r}
 estadistica_preliminar
 ```
+
+
 
 
