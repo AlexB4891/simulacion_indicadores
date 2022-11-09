@@ -14,6 +14,8 @@ R.version[1:8]
 
 ::: columns
 ::: {.column width="50%"}
+
+
 ### Método 1
 
 $$
@@ -28,6 +30,58 @@ Donde:
 :::
 
 ::: {.column width="50%"}
+
+
+### Definición de las variables involucradas
+
+Para el calculo de la tasa efectiva del Impuesto a la Renta
+
+* **Utilidad del ejercicio (801)**
+* **Impuesto a la Renta causado (839)**
+* **Exoneraciones y créditos por leyes especiales (852)**
+
+
+
+### Poblaciones de interés
+
+1.- Se considera todas las empresas del Ecuador que hayan llenado el formulario de impuesto a la Renta
+2.- Se considera la tasa efectiva es mayor a cero
+3.- Se considera la siguiente regla: si la empresa tiene una tasa estimada menor a la oficial se reemplaza con la tasa oficial 
+
+
+### Unidad de medida del indicador
+
+Tasa efectiva estimada
+
+
+## Interpretación
+
+Porcentaje de la utilidad a la cual corresponde la aplicaicón de la tarifa
+
+
+## Metadatos
+
+Formulario del Impuesto a la Renta para sociedades
+
+
+### Disponibilidad de los datos
+
+Desde el 2012 al 2020
+
+
+#### Relación con instrumentos de planificación nacional o acuerdos, iniciativas internacionales
+
+
+- Ley Orgánica de Régimen Tributario Interno (LORTI)
+
+- Reglamento para la aplicación de la  Ley Orgánica de Régimen Tributario Interno (RALORTI)
+
+### Periodo de elaboración
+
+Noviembre
+
+
+
 ### Método 2
 
 ::: {.column width="50%"}
@@ -37,7 +91,7 @@ $$
 
 Donde:
 
--   $I_{Ci}$ Es igual a la diferencia entrte el **impuesto a la renta causado** de la empresa $i$
+-   $I_{Ci}$ Es igual a la diferencia entre el **impuesto a la renta causado** de la empresa $i$
 
 -   $U_{Si}$ Es la utilidad gravable de la empresa $i$ menos el valor de la utilidad a reinvertir y capitalizar
 
@@ -45,3 +99,52 @@ Donde:
 :::
 :::
 :::
+
+
+### Definición de las variables involucradas
+
+
+Para el calculo de la tasa efectiva del Impuesto a la Renta
+
+* **Utilidad gravable de la empresa (819)**
+* **Utilidad a reinvertir y capitalizar (831)**
+* **Impuesto a la Renta causado (839)**
+
+
+### Poblaciones de interés
+
+1.- Se considera todas las empresas del Ecuador que hayan llenado el formulario de impuesto a la Renta
+2.- Se considera la tasa efectiva es mayor a cero
+3.- Se considera la siguiente regla: si la empresa tiene una tasa estimada menor a la oficial se reemplaza con la tasa oficial 
+
+
+### Unidad de medida del indicador
+
+Tasa efectiva estimada
+
+
+## Interpretación
+
+Porcentaje de la utilidad a la cual corresponde la aplicaicón de la tarifa
+
+
+## Metadatos
+
+Formulario del Impuesto a la Renta para sociedades
+
+
+### Disponibilidad de los datos
+
+Desde el 2012 al 2020
+
+
+#### Relación con instrumentos de planificación nacional o acuerdos, iniciativas internacionales
+
+
+- Ley Orgánica de Régimen Tributario Interno (LORTI)
+
+- Reglamento para la aplicación de la  Ley Orgánica de Régimen Tributario Interno (RALORTI)
+
+### Periodo de elaboración
+
+Noviembre
