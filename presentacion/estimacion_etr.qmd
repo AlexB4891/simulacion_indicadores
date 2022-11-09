@@ -1,0 +1,47 @@
+---
+title: "Estimaciones de la tasa de impuesto a la renta efectiva (ETR)"
+format: revealjs
+---
+
+## Environment
+
+```{r}
+
+R.version[1:8]
+```
+
+## Dos formas de estimación
+
+::: columns
+::: {.column width="50%"}
+### Método 1
+
+$$
+ETR_{(1)i} = \frac{Tax\space liability_{i}}{Net\space profit_{i}}
+$$
+
+Donde:
+
+-   $Tax\space liability_{i}$ Es igual a la diferencia entrte el **impuesto a la renta causado** de la empresa $i$ y el valor de las **exoneraciones y creditos por leyes especiales**
+
+-   $Net\space profit_{i}$ Es la utilidad del ejercicio de la empresa $i$
+:::
+
+::: {.column width="50%"}
+### Método 2
+
+::: {.column width="50%"}
+$$
+ETR_{(2)i} = \frac{I_{Ci} +0.1\times U_{Si}}{U_{Si}+U_{RCi}}
+$$
+
+Donde:
+
+-   $I_{Ci}$ Es igual a la diferencia entrte el **impuesto a la renta causado** de la empresa $i$
+
+-   $U_{Si}$ Es la utilidad gravable de la empresa $i$ menos el valor de la utilidad a reinvertir y capitalizar
+
+-   $U_{RCi}$ Utilidad a reinvertir y capitalizar de la empresa $i$
+:::
+:::
+:::
