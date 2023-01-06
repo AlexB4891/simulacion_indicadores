@@ -9,31 +9,71 @@ library(rlang)
 
 # Lectura de la tabla general ---------------------------------------------
 
-conteos <- read_tsv(file = "revision_APS/data/unbalanced/percent_declarado/participacion_dummy_aps_declarado.txt")
+#conteos <- read_tsv(file = "revision_APS/data/unbalanced/percent_declarado/participacion_dummy_aps_declarado.txt")
+
+
+
+
+
+# Nuevos indicadores
+desbalanced <- read_rds("01_DATA/APS/procesados/aps_101_new_vars.rds")
+balanced <- read_rds("01_DATA/APS/procesados/aps_balanced_panel.rds")
+semibalanced <- read_rds("01_DATA/APS/procesados/aps_semi_balanced_panel.rds")
+
+
+
+# Indicadores -------------------------------------------------------------
+balanced <- balanced %>%
+  group_by(informante) %>% 
+  summarise(n_distinct) %>% 
+  mutate(n = if_else( n_distinct == 8, 
+                      "TRUE", 
+                      "FALSE")) %>% 
+  filter(n = "TRUE") %>% 
+  select(id_empresa)
+
+
+semibalanced <- semibalanced %>% 
+  mutate(pre = if_else( year <= 2015, 
+                        "TRUE", 
+                        "FALSE"),
+         pro = if_else( year >= 2015, 
+                        "TRUE", 
+                        "FALSE")) %>% 
+  filter(pre = "TRUE",
+         pro = "TRUE")
+
+
+
+
+
+
+
+
 
 
 # Me quedo con las variables de interes para la simulación ----------------
 
-conteos <- conteos %>% 
-  mutate(utilidad_positiva = obs - dummy_perdida - dummy_cero) %>% 
-  select(-obs,-no_na) %>% 
-  filter(dummy_aps_declarado == 1)
+#conteos <- conteos %>% 
+#  mutate(utilidad_positiva = obs - dummy_perdida - dummy_cero) %>% 
+#  select(-obs,-no_na) %>% 
+#  filter(dummy_aps_declarado == 1)
 
 
 # Paso a un formato "long" ------------------------------------------------
 
 
-conteos_long <- conteos %>% 
-  pivot_longer(cols = c("dummy_perdida","dummy_cero","utilidad_positiva"),
-               names_to = "resultado_fiscal",
-               values_to = "frecuencia"
-               )
+#conteos_long <- conteos %>% 
+#  pivot_longer(cols = c("dummy_perdida","dummy_cero","utilidad_positiva"),
+#               names_to = "resultado_fiscal",
+#               values_to = "frecuencia"
+#               )
 
 
 # Exandir la base de datos ------------------------------------------------
 
-base_expandida <- uncount(data = conteos_long,
-                          weights = frecuencia)
+#base_expandida <- uncount(data = conteos_long,
+#                          weights = frecuencia)
 
 
 
@@ -42,23 +82,23 @@ base_expandida <- uncount(data = conteos_long,
 
 # Semilla aleatoria, para reproducibilidad:
 
-set.seed(2348761)
+#set.seed(2348761)
 # rnorm(100,mean = 10,sd = 2)
 
-base_expandida <- base_expandida %>% 
+#base_expandida <- base_expandida %>% 
   # slice(1:19) %>% 
   # rowwise() %>% 
-  mutate(percent_declarado = rnorm(n = n(),mean = mean,sd = sd),
-         percent_declarado = if_else(percent_declarado > 100,
-                                     true = 100,
-                                     false = percent_declarado))
+#  mutate(percent_declarado = rnorm(n = n(),mean = mean,sd = sd),
+#         percent_declarado = if_else(percent_declarado > 100,
+#                                     true = 100,
+#                                     false = percent_declarado))
 
 
 # Asignar un ID de las empresas ------------------------------------------------
 
-base_expandida <- base_expandida %>% 
-  group_by(anio_fiscal) %>% 
-  mutate(identificacion_informante_anon = row_number())
+#base_expandida <- base_expandida %>% 
+#  group_by(anio_fiscal) %>% 
+#  mutate(identificacion_informante_anon = row_number())
 
 # Siempre que suses un group_by hay que desagrupar!
 
@@ -66,42 +106,42 @@ base_expandida <- base_expandida %>%
 # Supuesto: las utilidades tienen una distribución normal,
 # y la media y desviación standar es constante en el tiempo
 
-set.seed(2348761)
+#set.seed(2348761)
 
-base_expandida <- base_expandida %>% 
-  ungroup() %>% 
-  mutate(utilidades = case_when(
-    resultado_fiscal == "dummy_perdida" ~ - abs(rnorm(n = n(),mean = 150000,sd = 100000)),
-    resultado_fiscal == "dummy_cero" ~ 0,
-    resultado_fiscal == "utilidad_positiva" ~ abs(rnorm(n = n(),mean = 150000,sd = 100000))
-  ))
+#base_expandida <- base_expandida %>% 
+#  ungroup() %>% 
+#  mutate(utilidades = case_when(
+#    resultado_fiscal == "dummy_perdida" ~ - abs(rnorm(n = n(),mean = 150000,sd = 100000)),
+#    resultado_fiscal == "dummy_cero" ~ 0,
+#    resultado_fiscal == "utilidad_positiva" ~ abs(rnorm(n = n(),mean = 150000,sd = 100000))
+#  ))
 
 
 # Añadiendo numeros de participaes y participaci[on en paraisos fiscales --------
 
 
-base_expandida <- base_expandida %>% 
-  ungroup() %>% 
-  mutate(
-    beneficiarios_finales = rpois(n = n(),lambda = 70),
-    beneficiarios_pff = rpois(n = n(),lambda = 10),
-    beneficiarios_ext = rpois(n = n(),lambda = 20),
-    beneficiarios_nac = beneficiarios_finales - beneficiarios_pff - beneficiarios_ext
-  )
+#base_expandida <- base_expandida %>% 
+#  ungroup() %>% 
+#  mutate(
+#    beneficiarios_finales = rpois(n = n(),lambda = 70),
+#    beneficiarios_pff = rpois(n = n(),lambda = 10),
+#    beneficiarios_ext = rpois(n = n(),lambda = 20),
+#    beneficiarios_nac = beneficiarios_finales - beneficiarios_pff - beneficiarios_ext
+#  )
 
 
 # Porcentajes participación -----------------------------------------------
 
 
-base_expandida <- base_expandida %>% 
-  ungroup() %>% 
-  mutate(
-     porcentaje_ext = rnorm(n = n(),mean = 10,10),
-     porcentaje_nac = rnorm(n = n(),mean = 20,10),
-     porcentaje_no_pff = rnorm(n = n(),mean = 1.5,10),
-     porcentaje_pff = percent_declarado - porcentaje_ext - porcentaje_nac - porcentaje_no_pff,
-     porcentaje_pff = if_else(porcentaje_pff < 0,0,porcentaje_pff)
-  )
+#base_expandida <- base_expandida %>% 
+#  ungroup() %>% 
+#  mutate(
+#     porcentaje_ext = rnorm(n = n(),mean = 10,10),
+#     porcentaje_nac = rnorm(n = n(),mean = 20,10),
+#     porcentaje_no_pff = rnorm(n = n(),mean = 1.5,10),
+#     porcentaje_pff = percent_declarado - porcentaje_ext - porcentaje_nac - porcentaje_no_pff,
+#     porcentaje_pff = if_else(porcentaje_pff < 0,0,porcentaje_pff)
+#  )
 
-write_rds(x = base_expandida,file = "../simulacion_indicadores/tabla_simulada.rds")
+#write_rds(x = base_expandida,file = "../simulacion_indicadores/tabla_simulada.rds")
 
