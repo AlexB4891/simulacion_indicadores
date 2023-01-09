@@ -9,45 +9,9 @@ library(rlang)
 
 # Lectura de la tabla general ---------------------------------------------
 
+# Ya te mando el archivo que va aqui, lo pones en la carpeta data/ y cambias la ruta
+
 #conteos <- read_tsv(file = "revision_APS/data/unbalanced/percent_declarado/participacion_dummy_aps_declarado.txt")
-
-
-
-
-
-# Nuevos indicadores
-desbalanced <- read_rds("01_DATA/APS/procesados/aps_101_new_vars.rds")
-balanced <- read_rds("01_DATA/APS/procesados/aps_balanced_panel.rds")
-semibalanced <- read_rds("01_DATA/APS/procesados/aps_semi_balanced_panel.rds")
-
-
-
-# Indicadores -------------------------------------------------------------
-balanced <- balanced %>%
-  group_by(informante) %>% 
-  summarise(n_distinct) %>% 
-  mutate(n = if_else( n_distinct == 8, 
-                      "TRUE", 
-                      "FALSE")) %>% 
-  filter(n = "TRUE") %>% 
-  select(id_empresa)
-
-
-semibalanced <- semibalanced %>% 
-  mutate(pre = if_else( year <= 2015, 
-                        "TRUE", 
-                        "FALSE"),
-         pro = if_else( year >= 2015, 
-                        "TRUE", 
-                        "FALSE")) %>% 
-  filter(pre = "TRUE",
-         pro = "TRUE")
-
-
-
-
-
-
 
 
 
@@ -144,4 +108,43 @@ semibalanced <- semibalanced %>%
 #  )
 
 #write_rds(x = base_expandida,file = "../simulacion_indicadores/tabla_simulada.rds")
+
+# El insumo de los siguientes pasos es la "base expandida", a partir de esta creamos los paneles
+# primera generas con las lineas anteriores
+
+
+# Indicadores -------------------------------------------------------------
+balanced <- balanced %>%
+  group_by(informante) %>% 
+
+# Creamos una variable cuyo valor sea la función n_distinct() sobre la variable de años
+
+summarise(n_distinct) %>% 
+
+# No va a existir la variable n distintict, tampoco necesitas el mutate, debes usar el filter directamente con la condicion
+  mutate(n = if_else( n_distinct == 8, 
+                      "TRUE", 
+                      "FALSE")) %>% 
+  filter(n = "TRUE") %>% 
+  select(id_empresa)
+
+
+semibalanced <- semibalanced %>% 
+
+# esta bien pero puedes usar 1 para el true y 0 para el false
+
+  mutate(pre = if_else( year <= 2015, 
+                        "TRUE", 
+                        "FALSE"),
+         pro = if_else( year >= 2015, 
+                        "TRUE", 
+                        "FALSE")) %>% 
+# Revisa, esto no va a filtrar, recuerda la sintaxis del filter
+
+  filter(pre = "TRUE",
+         pro = "TRUE")
+
+# Aqui abajo deben ir con comentarios los guardados de las bases en la carpeta data
+
+
 
