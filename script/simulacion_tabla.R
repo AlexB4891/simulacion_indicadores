@@ -9,10 +9,7 @@ library(rlang)
 
 # Lectura de la tabla general ---------------------------------------------
 
-# Ya te mando el archivo que va aqui, lo pones en la carpeta data/ y cambias la ruta
-
-#conteos <- read_tsv(file = "revision_APS/data/unbalanced/percent_declarado/participacion_dummy_aps_declarado.txt")
-
+#conteos <- read_tsv(file = "data/participacion_dummy_aps_declarado.txt")
 
 
 
@@ -34,7 +31,7 @@ library(rlang)
 #               )
 
 
-# Exandir la base de datos ------------------------------------------------
+# Expandir la base de datos ------------------------------------------------
 
 #base_expandida <- uncount(data = conteos_long,
 #                          weights = frecuencia)
@@ -109,6 +106,9 @@ library(rlang)
 
 #write_rds(x = base_expandida,file = "../simulacion_indicadores/tabla_simulada.rds")
 
+
+
+
 # El insumo de los siguientes pasos es la "base expandida", a partir de esta creamos los paneles
 # primera generas con las lineas anteriores
 
@@ -116,33 +116,21 @@ library(rlang)
 # Indicadores -------------------------------------------------------------
 balanced <- balanced %>%
   group_by(informante) %>% 
-
-# Creamos una variable cuyo valor sea la función n_distinct() sobre la variable de años
-
-summarise(n_distinct) %>% 
-
-# No va a existir la variable n distintict, tampoco necesitas el mutate, debes usar el filter directamente con la condicion
-  mutate(n = if_else( n_distinct == 8, 
-                      "TRUE", 
-                      "FALSE")) %>% 
-  filter(n = "TRUE") %>% 
+  n_distinct(años) %>% 
+  filter(if_else(n == 8, 
+                 true = 1,
+                 false = 0)) %>% 
   select(id_empresa)
 
 
 semibalanced <- semibalanced %>% 
-
-# esta bien pero puedes usar 1 para el true y 0 para el false
-
   mutate(pre = if_else( year <= 2015, 
-                        "TRUE", 
-                        "FALSE"),
+                        true = 1, 
+                        false = 0),
          pro = if_else( year >= 2015, 
-                        "TRUE", 
-                        "FALSE")) %>% 
-# Revisa, esto no va a filtrar, recuerda la sintaxis del filter
-
-  filter(pre = "TRUE",
-         pro = "TRUE")
+                        true = 1, 
+                        false = 0)) %>% 
+  filter(pre == 1 &  pro == 1)
 
 # Aqui abajo deben ir con comentarios los guardados de las bases en la carpeta data
 
