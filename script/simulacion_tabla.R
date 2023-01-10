@@ -104,7 +104,7 @@ library(rlang)
 #     porcentaje_pff = if_else(porcentaje_pff < 0,0,porcentaje_pff)
 #  )
 
-#write_rds(x = base_expandida,file = "../simulacion_indicadores/tabla_simulada.rds")
+#write_rds(x = base_expandida,file = "../simulacion_indicadores/base_expandida.rds")
 
 
 
@@ -114,6 +114,9 @@ library(rlang)
 
 
 # Indicadores -------------------------------------------------------------
+
+# Número de beneficiarios finales dentro de residencia en paraísos fiscales
+
 balanced <- balanced %>%
   group_by(informante) %>% 
   n_distinct(años) %>% 
@@ -135,4 +138,26 @@ semibalanced <- semibalanced %>%
 # Aqui abajo deben ir con comentarios los guardados de las bases en la carpeta data
 
 
+#Número de beneficiarios finales con residencia dentro paraisos fiscales
 
+write_rds(x = base_expandida,file = "../simulacion_indicadores/data/base_expandida1.rds")
+
+#Número de beneficiarios finales con residencia fuera de paraisos fiscales o extranjeros
+
+write_rds(x = base_expandida,file = "../simulacion_indicadores/data/base_expandida2.rds")
+
+# Número de beneficiarios finales con residencia en Ecuador.
+
+write_rds(x = base_expandida,file = "../simulacion_indicadores/data/base_expandida3.rds")
+
+# Participación de los beneficiarios finales locales.
+
+write_rds(x = base_expandida,file = "../simulacion_indicadores/data/base_expandida4.rds")
+
+# Participación individual del beneficiario final en paraisos fiscales
+
+write_rds(x = base_expandida,file = "../simulacion_indicadores/data/base_expandida5.rds")
+
+# Participación individual del beneficiario final fuera de paraisos fiscales
+
+write_rds(x = base_expandida,file = "../simulacion_indicadores/data/base_expandida6.rds")
