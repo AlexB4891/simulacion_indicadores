@@ -103,6 +103,10 @@ base_expandida <- base_expandida %>%
     porcentaje_pff = if_else(porcentaje_pff < 0,0,porcentaje_pff)
  )
 
+base_expandida <- base_expandida %>% 
+  mutate(dummy_aps_declarado_101 = 1,
+         dummy_revisar = 0)
+
 write_rds(x = base_expandida,file = "data/base_expandida.rds")
 
 # El insumo de los siguientes pasos es la "base expandida", a partir de esta creamos los paneles

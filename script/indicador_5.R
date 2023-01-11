@@ -20,43 +20,31 @@ library(flextable)
 
 # Lectura de la tabla general ---------------------------------------------
 
-base_expandida <- readRDS("C:/Users/andre/Downloads/base_expandida.rds")
+tabla_trabajo <- read_rds("data/base_expandida.rds")
 
+balanced <- read_rds("data/aps_balanced_panel.rds")
 
-# Indicador de beneficiarios finales con residencia en paraísos fiscales
+semibalanced <- read_rds("data/aps_semi_balanced_panel.rds")
 
-# Estadisticas descriptivas --------------------------------------------
-
-base_expandida1 <- base_expandida %>% 
-  group_by(anio_fiscal) %>% 
-  summarize( mean = mean(beneficiarios_pff),
-             na.rm = TRUE,
-             sd = sd(beneficiarios_pff),
-             median = median(beneficiarios_pff))
-
-
-
-write_rds(x = base_expandida,file = "../simulacion_indicadores/data/base_expandida1.rds")
-
-
-
+tabla_trabajo <- tabla_trabajo %>% 
+  slice_sample(prob = 0.3)
 
 # Indicadores -------------------------------------------------------------
 
 
 porcentaje_declarado <- list(
-  base_expandida1 %>% 
+  tabla_trabajo %>% 
     filter(dummy_aps_declarado_101 == 1,
            dummy_revisar == 0) %>% 
     select(anio_fiscal,identificacion_informante_anon, beneficiarios_pff) %>% 
     mutate(panel = "Desbalanceado"),
-  base_expandida1  %>% 
+  tabla_trabajo  %>% 
     filter(dummy_aps_declarado_101 == 1,
            dummy_revisar == 0) %>% 
     inner_join(balanced) %>% 
     select(anio_fiscal,identificacion_informante_anon, beneficiarios_pff) %>% 
     mutate(panel = "Balanceado"),
-  base_expandida1   %>% 
+  tabla_trabajo   %>% 
     filter(dummy_aps_declarado_101 == 1,
            dummy_revisar == 0) %>% 
     inner_join(semibalanced) %>% 
@@ -71,13 +59,13 @@ porcentaje_declarado <- list(
 
 tabla_estadisticas <- porcentaje_declarado %>% 
   filter(anio_fiscal <= 2014) %>% 
-  mutate(pocent_pff_no_cero = if_else(beneficiarios_pff == 0,NA_real_, beneficiarios_pff)) %>% 
+  mutate(beneficiarios_pff_no_cero = if_else(beneficiarios_pff == 0,NA_real_, as.numeric(beneficiarios_pff))) %>% 
   group_by(panel,anio_fiscal) %>% 
   summarise(
     `Obs` = n(),
-    `Vacios` = sum(is.na(beneficiarios_pff)),
-    `Cero's` = sum(beneficiarios_pff == 0),
-    `Mín` = min(beneficiarios_pff_no_cero,na.rm = T),
+    `Vacios` = sum(is.na(beneficiarios_pff)), # Usamos la variable original
+    `Cero's` = sum(beneficiarios_pff == 0), # Usamos la variable original
+    `Mín` = min(beneficiarios_pff_no_cero,na.rm = T), # Usamos la variable mayor que cero
     Median = median(beneficiarios_pff_no_cero,na.rm = T),
     Max = max(beneficiarios_pff_no_cero,na.rm = T),
     Media = mean(beneficiarios_pff_no_cero,na.rm = T),
@@ -111,24 +99,24 @@ estadistica_preliminar <- flextable(tabla_estadisticas) %>%
 tabla_distribucion <- porcentaje_declarado %>% 
   mutate(panel = factor(panel,levels = c("Desbalanceado","Semibalanceado","Balanceado"))) %>% 
   filter(anio_fiscal <= 2014) %>% 
-  mutate(beneficiarios_pff_no_cero = if_else(beneficiarios_pff == 0,NA_real_,beneficiarios_pff)) %>% 
+  mutate(beneficiarios_pff_no_cero = if_else(beneficiarios_pff == 0,NA_real_,as.numeric(beneficiarios_pff))) %>% 
   group_by(panel,identificacion_informante_anon) %>% 
-  summarise(pff_1214 = mean(beneficiarios_pff_no_cero,na.rm = T))
+  summarise(beneficiarios_pff_1214 = mean(beneficiarios_pff_no_cero,na.rm = T)) # Cambiar de acuerdo al caso el nombre de la variable
 
 tabla_distribucion <- tabla_distribucion %>% 
   ungroup() %>% 
   group_by(panel) %>% 
-  mutate(mean = mean(pff_1214,na.rm = T),
-         sd = sd(pff_1214,na.rm = T),
-         median = median(pff_1214,na.rm = T),
+  mutate(mean = mean(beneficiarios_pff_1214,na.rm = T),
+         sd = sd(beneficiarios_pff_1214,na.rm = T),
+         median = median(beneficiarios_pff_1214,na.rm = T),
          upper = mean + sd,
          lower = mean - sd) %>% 
   rowwise() %>% 
-  mutate(dummy = between(pff_1214,lower,upper))
+  mutate(dummy = between(beneficiarios_pff_1214,lower,upper))
 
 grafico_distribucion <- tabla_distribucion %>% 
-  filter(!is.nan(pff_1214)) %>% 
-  ggplot(mapping = aes(x = pff_1214,color = panel,fill = panel)) +
+  filter(!is.nan(beneficiarios_pff_1214)) %>% 
+  ggplot(mapping = aes(x = beneficiarios_pff_1214,color = panel,fill = panel)) +
   geom_histogram(alpha = 0.3) +
   geom_vline(aes(xintercept = mean,color = panel),linetype = 3,size = 0.75) +
   geom_vline(aes(xintercept = median,color = panel),linetype = 1,size = 0.75) +

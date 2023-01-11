@@ -27,7 +27,7 @@ Dado el porcentaje de participación efectiva con residencia en paraisos fiscale
 ### Fórmula del cálculo
 
 
-$$PPF\_1214_i =\sum_{t = 2012}^{2014} \frac{p_{ti}}{3}$$
+$$NBFPPF\_1214_i =\sum_{t = 2012}^{2014} \frac{N_{ti}}{3}$$
 
 Donde:
 
@@ -73,8 +73,8 @@ Para el cálculo del tratamiento continuo de uso de paraísos fiscales, se tomar
 - Para el análisis no se consideran las correcciones en la presentación de años pasados.
 - La tasa de omisión del anexo APS información se presenta a continuación:
 
-```{r}
-source(file = "tabla_inconsistencias.R",chdir = T)
+```{r, eval=FALSE}
+source(file = "../script/tabla_inconsistencias.R",chdir = T)
 
 ft_inconsistencias
 
@@ -128,7 +128,7 @@ Enero, 2023
 
 ```{r}
 
-source("indicador_1.R",chdir = T)
+source("../script/indicador_5.R",chdir = T)
 
 grafico_distribucion
 
