@@ -20,7 +20,7 @@ Número de beneficiarios finales con residencia dentro paraisos fiscales
 
 ### Definición
 
-Dado el porcentaje de participación efectiva con residencia en paraisos fiscales que declaran las sociedades se calcula como el promedio de esta participación de los valores anuales en el periodo 20012-2014 para cada empresa.
+Dado el número de beneficiarios con residencia en paraisos fiscales que declaran las sociedades se calcula como el promedio de esta participación de los valores anuales en el periodo 20012-2014 para cada empresa.
 
 ***
 
@@ -31,7 +31,7 @@ $$NBFPPF\_1214_i =\sum_{t = 2012}^{2014} \frac{N_{ti}}{3}$$
 
 Donde:
 
-$p_{ti}$ : participación efectiva en paraísos fiscales de la empresa $i$ en el año $t$
+$N_{ti}$ : beneficiarios con residencia en paraisos fiscale de la empresa $i$ en el año $t$
 
 $i$ : beneficiarios finales en paraísos fiscales
 

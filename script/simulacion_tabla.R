@@ -142,6 +142,4 @@ semibalanced <- semibalanced %>%
 
 write_rds(semibalanced,"data/aps_semi_balanced_panel.rds")
 
-# Aqui abajo deben ir con comentarios los guardados de las bases en la carpeta data
-
 
