@@ -143,3 +143,20 @@ semibalanced <- semibalanced %>%
 write_rds(semibalanced,"data/aps_semi_balanced_panel.rds")
 
 
+# Varaibles del formulario del impuesto a la renta ------------------------
+
+
+# Ventas netas: vln_eaf_tdc_1800 (nombre de la variable) 
+# Utilidad del ejercicio: utilidad_ejercicio_3420 
+
+# Simulacmos las variables como normales con media (10000) y una desviacion grande
+# Los valores seran distintos para cada varaibles
+
+base_expandida <- read_rds("data/base_expandida.rds")
+
+# Sobre esta base le vamos a simula  a las variables:
+
+# Al final calculamos el net prfoti ratio (profitability)
+
+
+

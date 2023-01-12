@@ -27,7 +27,7 @@ balanced <- read_rds("data/aps_balanced_panel.rds")
 semibalanced <- read_rds("data/aps_semi_balanced_panel.rds")
 
 tabla_trabajo <- tabla_trabajo %>% 
-  slice_sample(prob = 0.3)
+  slice_sample(prop = 0.3)
 
 
 # Indicadores -------------------------------------------------------------
