@@ -14,13 +14,13 @@ knitr::opts_chunk$set(echo = FALSE,message = FALSE,warning = FALSE)
 
 ### Nombre del Indicador
 
-Número de beneficiarios finales con residencia dentro paraisos fiscales
+Número de beneficiarios finales con residencia dentro de paraisos fiscales
 
 ***
 
 ### Definición
 
-Dado el número de beneficiarios con residencia en paraisos fiscales que declaran las sociedades se calcula como el promedio de esta participación de los valores anuales en el periodo 20012-2014 para cada empresa.
+Dado el número de beneficiarios con residencia dentro de paraisos fiscales se calcula como el promedio de los valores anuales en el periodo 20012-2014 para cada empresa.
 
 ***
 
@@ -31,11 +31,11 @@ $$NBFPPF\_1214_i =\sum_{t = 2012}^{2014} \frac{N_{ti}}{3}$$
 
 Donde:
 
-$N_{ti}$ : beneficiarios con residencia en paraisos fiscale de la empresa $i$ en el año $t$
+$N_{ti}$ : número de beneficiarios con residencia en paraisos fiscales de la empresa $i$ en el año $t$
 
 $i$ : beneficiarios finales en paraísos fiscales
 
-$PPF\_1214_i$ : promedio de la participación de los beneficiarios finales con residencia en paraisos de las empresas durante el periodo **pre-reforma.**
+$NBFPPF\_1214_i$ : promedio del número de beneficiarios con residencia en paraisos fiscales de las empresas durante el periodo **pre-reforma.**
 
 ***
 
@@ -46,7 +46,7 @@ Para el cálculo del tratamiento continuo de uso de paraísos fiscales, se tomar
 
 * **Anexo APS:**
 
-  * **Porcentaje efectivo de participacion**: es el porcentaje de propiedad en la emmpresa informante que tiene cada beneficiario final declarado o informado en el Anexo APS
+  * **Porcentaje efectivo de participacion**: es el porcentaje de propiedad en la empresa informante que tiene cada beneficiario declarado o informado en el Anexo APS
 
   * **Identificador del informante** Identificador anónimo de la empresa informante
 
@@ -84,13 +84,13 @@ ft_inconsistencias
 
 ### Unidad de medida del indicador
 
-Porcentaje promedio
+Unidad promedio
 
 ***
 
 ### Interpretación del indicador
 
-Participación efectiva promedio que tuvieron las empresas en paraísos fiscales durante el periodo 2012-2014
+Numero de beneficiarios promedio dentro de paraisos fiscales durante el periodo 2012-2014
 
 ***
 

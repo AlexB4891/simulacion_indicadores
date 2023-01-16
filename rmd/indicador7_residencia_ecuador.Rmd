@@ -20,22 +20,22 @@ Número de beneficiarios finales con residencia en Ecuador
 
 ### Definición
 
-Dado el porcentaje de participación efectiva con residencia en paraisos fiscales que declaran las sociedades se calcula como el promedio de esta participación de los valores anuales en el periodo 20012-2014 para cada empresa.
+Dado el número de beneficiarios finales con residencia en Ecuador se calcula el promedio de los valores anuales en el periodo 20012-2014 para cada empresa.
 
 ***
 
 ### Fórmula del cálculo
 
 
-$$PPF\_1214_i =\sum_{t = 2012}^{2014} \frac{p_{ti}}{3}$$
+$$NBFE\_1214_i =\sum_{t = 2012}^{2014} \frac{p_{ti}}{3}$$
 
 Donde:
 
-$p_{ti}$ : participación efectiva en paraísos fiscales de la empresa $i$ en el año $t$
+$N_{ti}$ : número de beneficiarios finales con residencia en Ecuador de la empresa $i$ en el año $t$
 
-$i$ : beneficiarios finales en paraísos fiscales
+$i$ : beneficiarios finales con residencia en Ecuador
 
-$PPF\_1214_i$ : promedio de la participación de los beneficiarios finales con residencia en paraisos de las empresas durante el periodo **pre-reforma.**
+$NBFE\_1214_i$ : promedio del número de beneficiarios finales con residencia en Ecuador de las empresas durante el periodo **pre-reforma.**
 
 ***
 
@@ -46,7 +46,7 @@ Para el cálculo del tratamiento continuo de uso de paraísos fiscales, se tomar
 
 * **Anexo APS:**
 
-  * **Porcentaje efectivo de participacion**: es el porcentaje de propiedad en la emmpresa informante que tiene cada beneficiario final declarado o informado en el Anexo APS
+  * **Porcentaje efectivo de participacion**: es el porcentaje de propiedad en la empresa informante que tiene cada beneficiario final declarado o informado en el Anexo APS
 
   * **Identificador del informante** Identificador anónimo de la empresa informante
 
@@ -84,13 +84,13 @@ ft_inconsistencias
 
 ### Unidad de medida del indicador
 
-Porcentaje promedio
+Unidad promedio
 
 ***
 
 ### Interpretación del indicador
 
-Participación efectiva promedio que tuvieron las empresas en paraísos fiscales durante el periodo 2012-2014
+Número de beneficiarios finales ´promedio con residencia en Ecuador durante el periodo 2012-2014
 
 ***
 

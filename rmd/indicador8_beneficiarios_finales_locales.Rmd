@@ -14,28 +14,28 @@ knitr::opts_chunk$set(echo = FALSE,message = FALSE,warning = FALSE)
 
 ### Nombre del Indicador
 
-Participación de los beneficiarios finales locales.
+ Participación de los beneficiarios finales locales
 
 ***
 
 ### Definición
 
-Dado el porcentaje de participación efectiva con residencia en paraisos fiscales que declaran las sociedades se calcula como el promedio de esta participación de los valores anuales en el periodo 20012-2014 para cada empresa.
+Dado el porcentaje de participación de los beneficiarios finales locales, se calcula como el promedio de esta participación de los valores anuales en el periodo 20012-2014 para cada empresa.
 
 ***
 
 ### Fórmula del cálculo
 
 
-$$PPF\_1214_i =\sum_{t = 2012}^{2014} \frac{p_{ti}}{3}$$
+$$PBFL\_1214_i =\sum_{t = 2012}^{2014} \frac{p_{ti}}{3}$$
 
 Donde:
 
-$p_{ti}$ : participación efectiva en paraísos fiscales de la empresa $i$ en el año $t$
+$p_{ti}$ : participación efectiva  de la empresa local $i$ en el año $t$
 
 $i$ : beneficiarios finales en paraísos fiscales
 
-$PPF\_1214_i$ : promedio de la participación de los beneficiarios finales con residencia en paraisos de las empresas durante el periodo **pre-reforma.**
+$PBFL\_1214_i$ : promedio de la participación de los beneficiarios finales locales de las empresas durante el periodo **pre-reforma.**
 
 ***
 
@@ -90,7 +90,7 @@ Porcentaje promedio
 
 ### Interpretación del indicador
 
-Participación efectiva promedio que tuvieron las empresas en paraísos fiscales durante el periodo 2012-2014
+Participación efectiva promedio que tuvieron las empresas locales durante el periodo 2012-2014
 
 ***
 

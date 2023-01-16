@@ -100,12 +100,17 @@ base_expandida <- base_expandida %>%
     porcentaje_nac = rnorm(n = n(),mean = 20,10),
     porcentaje_no_pff = rnorm(n = n(),mean = 1.5,10),
     porcentaje_pff = percent_declarado - porcentaje_ext - porcentaje_nac - porcentaje_no_pff,
-    porcentaje_pff = if_else(porcentaje_pff < 0,0,porcentaje_pff)
+    porcentaje_pff = if_else(porcentaje_pff < 0,0,porcentaje_pff),
+    vln_eaf_tdc_1800 = rnorm(n = n(),mean = 10,10),
+    utilidad_ejercicio_3420 = rnorm(n = n(),mean = 10,10)
  )
 
 base_expandida <- base_expandida %>% 
   mutate(dummy_aps_declarado_101 = 1,
          dummy_revisar = 0)
+
+
+
 
 write_rds(x = base_expandida,file = "data/base_expandida.rds")
 

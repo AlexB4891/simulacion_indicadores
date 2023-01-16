@@ -20,22 +20,22 @@ Participación individual del beneficiario final en paraisos fiscales
 
 ### Definición
 
-Dado el porcentaje de participación efectiva con residencia en paraisos fiscales que declaran las sociedades se calcula como el promedio de esta participación de los valores anuales en el periodo 20012-2014 para cada empresa.
+Dado el porcentaje de participación individual con residencia en paraisos fiscales se calcula como el promedio de esta participación de los valores anuales en el periodo 20012-2014 para cada empresa.
 
 ***
 
 ### Fórmula del cálculo
 
 
-$$PPF\_1214_i =\sum_{t = 2012}^{2014} \frac{p_{ti}}{3}$$
+$$PIBFPF\_1214_i =\sum_{t = 2012}^{2014} \frac{p_{ti}}{3}$$
 
 Donde:
 
-$p_{ti}$ : participación efectiva en paraísos fiscales de la empresa $i$ en el año $t$
+$p_{ti}$ : participación individual en paraísos fiscales de la empresa $i$ en el año $t$
 
 $i$ : beneficiarios finales en paraísos fiscales
 
-$PPF\_1214_i$ : promedio de la participación de los beneficiarios finales con residencia en paraisos de las empresas durante el periodo **pre-reforma.**
+$PIBFPF\_1214_i$ : promedio de la participación individual de los beneficiarios finales con residencia en paraisos de las empresas durante el periodo **pre-reforma.**
 
 ***
 
@@ -46,7 +46,7 @@ Para el cálculo del tratamiento continuo de uso de paraísos fiscales, se tomar
 
 * **Anexo APS:**
 
-  * **Porcentaje efectivo de participacion**: es el porcentaje de propiedad en la emmpresa informante que tiene cada beneficiario final declarado o informado en el Anexo APS
+  * **Porcentaje efectivo de participacion**: es el porcentaje de propiedad en la empresa informante que tiene cada beneficiario final declarado o informado en el Anexo APS
 
   * **Identificador del informante** Identificador anónimo de la empresa informante
 
@@ -90,7 +90,7 @@ Porcentaje promedio
 
 ### Interpretación del indicador
 
-Participación efectiva promedio que tuvieron las empresas en paraísos fiscales durante el periodo 2012-2014
+Participación individual promedio que tuvieron las empresas en paraísos fiscales durante el periodo 2012-2014
 
 ***
 
