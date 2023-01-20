@@ -104,13 +104,6 @@ base_expandida <- base_expandida %>%
  )
 
 
-#Nuevas variables de ventas y utilidades para la obtencion del ratio de utilidad neta de la empresa
-
-base_expandida <- base_expandida %>% 
-  rowwise() %>%
-  mutate(vln_eaf_tdc_1800 = rnorm(n = n(),mean = 100000,5300),
-         utilidad_ejercicio_3420 = rnorm(n = n(),mean = 100000,4150),
-         net_profit_ratio = (utilidad_ejercicio_3420/vln_eaf_tdc_1800)*100)
 
 
 #todas las empresas tienen un Formulario APS 
@@ -158,8 +151,9 @@ semibalanced <- semibalanced %>%
 write_rds(semibalanced,"data/aps_semi_balanced_panel.rds")
 
 
-# Varaibles del formulario del impuesto a la renta ------------------------
+# Variables del formulario del impuesto a la renta ------------------------
 
+# Sobre esta base (base_expandida) le vamos a simular  a las variables ventas y utilidades, al final calculamos el net profit ratio (profitability)
 
 # Ventas netas: vln_eaf_tdc_1800 (nombre de la variable) 
 # Utilidad del ejercicio: utilidad_ejercicio_3420 
@@ -167,11 +161,16 @@ write_rds(semibalanced,"data/aps_semi_balanced_panel.rds")
 # Simulacmos las variables como normales con media (10000) y una desviacion grande
 # Los valores seran distintos para cada varaibles
 
+# Sobre esta base le vamos a simular  a las variables ventas y utilidades, al final calculamos el net profit ratio (profitability)
+
+#Nuevas variables de ventas y utilidades para la obtencion del ratio de utilidad neta de la empresa
+
+base_expandida <- base_expandida %>% 
+  rowwise() %>%
+  mutate(vln_eaf_tdc_1800 = rnorm(n = n(),mean = 100000,5300),
+         utilidad_ejercicio_3420 = rnorm(n = n(),mean = 100000,4150),
+         net_profit_ratio = (utilidad_ejercicio_3420/vln_eaf_tdc_1800)*100)
+
+
 base_expandida <- read_rds("data/base_expandida.rds")
-
-# Sobre esta base le vamos a simula  a las variables:
-
-# Al final calculamos el net prfoti ratio (profitability)
-
-
 
