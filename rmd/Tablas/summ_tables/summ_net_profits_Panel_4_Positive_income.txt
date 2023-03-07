@@ -1,0 +1,9 @@
+treatment	statistic	net_profits
+Control	mean	10.058
+Control	sd	2.753
+Control	median	10.022
+Control	firms	3467
+Treatment	mean	10.284
+Treatment	sd	2.642
+Treatment	median	10.417
+Treatment	firms	773

@@ -1,0 +1,9 @@
+treatment	statistic	tax_liability
+Control	mean	9.161
+Control	sd	2.539
+Control	median	9.139
+Control	firms	2244
+Treatment	mean	9.159
+Treatment	sd	2.468
+Treatment	median	9.15
+Treatment	firms	547

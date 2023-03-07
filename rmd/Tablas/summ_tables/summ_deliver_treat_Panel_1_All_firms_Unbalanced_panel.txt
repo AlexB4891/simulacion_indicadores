@@ -1,0 +1,9 @@
+treatment	statistic	deliver_treat
+Control	mean	0.238
+Control	sd	0.34
+Control	median	0
+Control	firms	6330
+Treatment	mean	0.225
+Treatment	sd	0.335
+Treatment	median	0
+Treatment	firms	1376

@@ -1,0 +1,9 @@
+treatment	statistic	tasa_ir
+Control	mean	0.155
+Control	sd	0.092
+Control	median	0.22
+Control	firms	4477
+Treatment	mean	0.151
+Treatment	sd	0.094
+Treatment	median	0.22
+Treatment	firms	979

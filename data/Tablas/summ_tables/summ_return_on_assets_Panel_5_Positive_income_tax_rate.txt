@@ -1,0 +1,9 @@
+treatment	statistic	return_on_assets
+Control	mean	0.799
+Control	sd	0.314
+Control	median	1
+Control	firms	3506
+Treatment	mean	0.648
+Treatment	sd	0.384
+Treatment	median	0.828
+Treatment	firms	745

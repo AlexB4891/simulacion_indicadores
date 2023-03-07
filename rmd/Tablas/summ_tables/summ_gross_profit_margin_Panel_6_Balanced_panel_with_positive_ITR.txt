@@ -1,0 +1,9 @@
+treatment	statistic	gross_profit_margin
+Control	mean	0.158
+Control	sd	0.225
+Control	median	0.072
+Control	firms	2244
+Treatment	mean	0.19
+Treatment	sd	0.259
+Treatment	median	0.078
+Treatment	firms	547

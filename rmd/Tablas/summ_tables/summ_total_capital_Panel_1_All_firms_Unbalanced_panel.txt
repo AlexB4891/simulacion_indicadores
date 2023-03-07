@@ -1,0 +1,9 @@
+treatment	statistic	total_capital
+Control	mean	10.262
+Control	sd	2.959
+Control	median	10.131
+Control	firms	5387
+Treatment	mean	11
+Treatment	sd	3.017
+Treatment	median	11.316
+Treatment	firms	1213

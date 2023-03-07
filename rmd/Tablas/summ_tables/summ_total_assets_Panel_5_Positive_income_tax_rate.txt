@@ -1,0 +1,9 @@
+treatment	statistic	total_assets
+Control	mean	12.718
+Control	sd	2.544
+Control	median	12.747
+Control	firms	3506
+Treatment	mean	13.543
+Treatment	sd	2.261
+Treatment	median	13.649
+Treatment	firms	745

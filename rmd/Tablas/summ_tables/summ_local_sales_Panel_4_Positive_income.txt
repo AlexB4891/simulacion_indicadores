@@ -1,0 +1,9 @@
+treatment	statistic	local_sales
+Control	mean	12.324
+Control	sd	2.696
+Control	median	12.372
+Control	firms	4010
+Treatment	mean	12.556
+Treatment	sd	2.581
+Treatment	median	12.48
+Treatment	firms	844

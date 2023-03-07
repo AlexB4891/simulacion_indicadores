@@ -1,0 +1,9 @@
+treatment	statistic	total_sales
+Control	mean	13.233
+Control	sd	2.513
+Control	median	13.192
+Control	firms	2463
+Treatment	mean	13.15
+Treatment	sd	2.601
+Treatment	median	13.1
+Treatment	firms	617

@@ -1,0 +1,9 @@
+treatment	statistic	total_income
+Control	mean	13.491
+Control	sd	2.396
+Control	median	13.376
+Control	firms	2244
+Treatment	mean	13.373
+Treatment	sd	2.474
+Treatment	median	13.382
+Treatment	firms	547

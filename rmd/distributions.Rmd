@@ -1,0 +1,118 @@
+---
+title: "Difference in difference design for 2015 reform"
+author: "Alex Bajaña"
+output: 
+  html_document:
+    css: custom.css
+runtime: shiny
+---
+
+
+
+
+```{r, echo=FALSE,message=FALSE,warning=FALSE}
+
+library(tidyverse)
+library(texreg)
+library(janitor)
+library(shiny)
+library(cowplot)
+
+tabla_diff_diff_model <- read_tsv("../data/tabla_modelos.txt")
+tabla_diff_diff_perfo <- read_tsv("../data/tabla_performance.txt")
+
+diccionario <- readxl::read_excel("database_dictionary.xlsx",skip = 8) %>% 
+  clean_names() %>% 
+  rowid_to_column() %>% 
+  filter(rowid %in% c(12:19,44:63)) 
+
+paneles <- c(
+  "Panel 1: All firms (Unbalanced panel)",
+  "Panel 2: Balanced panel",
+  "Panel 3: Semi-Balanced panel",
+  "Panel 4: Positive income",
+  "Panel 5: Positive income tax rate",
+  "Panel 6: Balanced panel with positive I.T.R"
+)
+
+variables <- set_names(x = diccionario$name_in_the_database,
+                       nm = diccionario$label)
+```
+
+
+
+## Distributions
+
+```{r, echo=FALSE,message=FALSE,warning=FALSE}
+
+shinyUI(fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+
+            selectInput(inputId = "paneles",
+            label = "Select the panels",
+            choices = paneles,
+            multiple = TRUE,
+            selected = paneles),
+            
+            
+            selectInput(inputId = "variables",
+                        label = "Select the variables",
+                        choices = variables,
+                        selected = variables["Estimated tax rates"])
+      ),
+    mainPanel(
+        uiOutput('plot1')
+      )
+    )
+  )
+)
+
+```
+
+
+```{r, echo=FALSE,message=FALSE,warning=FALSE}
+
+
+
+panel_clean <- reactive({
+  
+  str_remove_all(input$paneles,"[:punct:]") %>% 
+        str_replace_all(" ","_")
+  
+})
+
+ruta_distribucion <- reactive({
+  
+  str_c("www/Graficos/distributions/distribucion_",input$variables,"_",panel_clean(),".png")
+  
+})
+
+# plots_distribucion <- reactive({
+#   
+#   purrr::map(.x = ruta_distribucion(),
+#       .f = ~{
+#     cowplot::ggdraw() + 
+#       cowplot::draw_image(.x)
+#   })
+#   
+# })
+
+
+output$plot1 <- renderUI({
+  
+  tagList(
+    map(.x = ruta_distribucion(),
+        ~tags$img(
+          src = .x,
+          width = 600
+        ))
+  )
+  
+  
+})
+```
+
+
+
+

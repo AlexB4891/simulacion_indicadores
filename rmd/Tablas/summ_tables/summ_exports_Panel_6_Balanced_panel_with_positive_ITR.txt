@@ -1,0 +1,9 @@
+treatment	statistic	exports
+Control	mean	12.346
+Control	sd	2.573
+Control	median	12.326
+Control	firms	582
+Treatment	mean	12.87
+Treatment	sd	2.785
+Treatment	median	12.55
+Treatment	firms	104

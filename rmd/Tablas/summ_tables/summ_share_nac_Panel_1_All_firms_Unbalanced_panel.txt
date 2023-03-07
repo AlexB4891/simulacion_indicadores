@@ -1,0 +1,9 @@
+treatment	statistic	share_nac
+Control	mean	0.001
+Control	sd	0.033
+Control	median	0
+Control	firms	6330
+Treatment	mean	0.005
+Treatment	sd	0.064
+Treatment	median	0
+Treatment	firms	1376

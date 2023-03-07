@@ -1,0 +1,9 @@
+treatment	statistic	porcentage_pff
+Control	mean	0.464
+Control	sd	3.619
+Control	median	0
+Control	firms	3506
+Treatment	mean	89.867
+Treatment	sd	16.807
+Treatment	median	99.75
+Treatment	firms	745

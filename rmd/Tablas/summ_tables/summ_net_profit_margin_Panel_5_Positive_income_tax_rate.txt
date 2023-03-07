@@ -1,0 +1,9 @@
+treatment	statistic	net_profit_margin
+Control	mean	1
+Control	sd	0
+Control	median	1
+Control	firms	3506
+Treatment	mean	1
+Treatment	sd	0
+Treatment	median	1
+Treatment	firms	745

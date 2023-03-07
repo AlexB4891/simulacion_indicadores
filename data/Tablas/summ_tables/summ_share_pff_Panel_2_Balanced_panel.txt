@@ -1,0 +1,9 @@
+treatment	statistic	share_pff
+Control	mean	0.222
+Control	sd	0.346
+Control	median	0
+Control	firms	3121
+Treatment	mean	0.818
+Treatment	sd	0.331
+Treatment	median	1
+Treatment	firms	833

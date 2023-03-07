@@ -1,0 +1,9 @@
+treatment	statistic	long_term_inv_subasoc
+Control	mean	10.743
+Control	sd	3.728
+Control	median	11.858
+Control	firms	100
+Treatment	mean	12.678
+Treatment	sd	1.513
+Treatment	median	13.222
+Treatment	firms	25

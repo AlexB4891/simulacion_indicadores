@@ -1,0 +1,103 @@
+---
+title: "Untitled"
+format: 
+  html:
+    page-layout: custom
+server: shiny
+---
+
+::: {.panel-tabset}
+
+## Diff in diff estimations
+
+
+
+## Distributions
+
+```{r}
+#| panel: sidebar
+
+
+library(tidyverse)
+library(texreg)
+library(janitor)
+library(shiny)
+library(cowplot)
+
+tabla_diff_diff_model <- read_tsv("../data/tabla_modelos.txt")
+tabla_diff_diff_perfo <- read_tsv("../data/tabla_performance.txt")
+
+diccionario <- readxl::read_excel("database_dictionary.xlsx",skip = 8) %>% 
+  clean_names() %>% 
+  rowid_to_column() %>% 
+  filter(rowid %in% c(12:19,44:63)) 
+
+paneles <- c(
+  "Panel 1: All firms (Unbalanced panel)",
+  "Panel 2: Balanced panel",
+  "Panel 3: Semi-Balanced panel",
+  "Panel 4: Positive income",
+  "Panel 5: Positive income tax rate",
+  "Panel 6: Balanced panel with positive I.T.R"
+)
+
+variables <- set_names(x = diccionario$name_in_the_database,
+                       nm = diccionario$label)
+
+selectInput(inputId = "paneles",
+            label = "Select the panels",
+            choices = paneles,
+            multiple = TRUE,
+            selected = paneles)
+
+
+selectInput(inputId = "variables",
+            label = "Select the variables",
+            choices = variables,
+            selected = variables["Estimated tax rates"])
+
+```
+
+```{r}
+#| panel: fill
+plotOutput('plot1')
+```
+
+
+```{r}
+#| context: server
+
+panel_clean <- reactive({
+  
+  str_remove_all(input$paneles,"[:punct:]") %>% 
+        str_replace_all(" ","_")
+  
+})
+
+ruta_distribucion <- reactive({
+  
+  str_c("Graficos/distributions/distribucion_",input$variables,"_",panel_clean(),".png")
+  
+})
+
+plots_distribucion <- reactive({
+  
+  map(.x = ruta_distribucion(),
+      .f = ~{
+    cowplot::ggdraw() + 
+      cowplot::draw_image(.x, scale = 0.9)
+  })
+  
+})
+
+
+output$plot1 <- renderPlot({
+  
+  cowplot::plot_grid(plotlist = plots_distribucion())
+})
+
+```
+
+
+
+:::

@@ -1,0 +1,9 @@
+treatment	statistic	labor_costs
+Control	mean	11.47
+Control	sd	2.394
+Control	median	11.561
+Control	firms	2533
+Treatment	mean	11.194
+Treatment	sd	2.805
+Treatment	median	11.544
+Treatment	firms	642

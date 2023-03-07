@@ -1,0 +1,9 @@
+treatment	statistic	porcentage_ext
+Control	mean	85.854
+Control	sd	19.398
+Control	median	99
+Control	firms	3506
+Treatment	mean	1.64
+Treatment	sd	6.65
+Treatment	median	0
+Treatment	firms	745

@@ -1,0 +1,9 @@
+treatment	statistic	porcentage_nac
+Control	mean	13.318
+Control	sd	19.381
+Control	median	0.4
+Control	firms	5155
+Treatment	mean	8.608
+Treatment	sd	15.691
+Treatment	median	0.12
+Treatment	firms	1158

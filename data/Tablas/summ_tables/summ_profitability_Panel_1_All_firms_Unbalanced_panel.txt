@@ -1,0 +1,9 @@
+treatment	statistic	profitability
+Control	mean	0.065
+Control	sd	0.138
+Control	median	0.007
+Control	firms	6330
+Treatment	mean	0.076
+Treatment	sd	0.152
+Treatment	median	0.008
+Treatment	firms	1376

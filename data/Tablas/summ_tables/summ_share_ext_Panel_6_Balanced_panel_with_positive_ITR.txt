@@ -1,0 +1,9 @@
+treatment	statistic	share_ext
+Control	mean	0.786
+Control	sd	0.341
+Control	median	1
+Control	firms	2244
+Treatment	mean	0.18
+Treatment	sd	0.322
+Treatment	median	0
+Treatment	firms	547

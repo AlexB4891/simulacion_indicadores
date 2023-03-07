@@ -1,0 +1,9 @@
+treatment	statistic	current_investment
+Control	mean	11.072
+Control	sd	2.411
+Control	median	11.268
+Control	firms	658
+Treatment	mean	11.001
+Treatment	sd	2.487
+Treatment	median	11.537
+Treatment	firms	153

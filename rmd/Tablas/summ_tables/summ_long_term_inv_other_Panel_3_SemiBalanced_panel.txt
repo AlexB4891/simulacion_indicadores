@@ -1,0 +1,9 @@
+treatment	statistic	long_term_inv_other
+Control	mean	10.21
+Control	sd	2.716
+Control	median	10.952
+Control	firms	275
+Treatment	mean	10.339
+Treatment	sd	2.939
+Treatment	median	11.358
+Treatment	firms	107

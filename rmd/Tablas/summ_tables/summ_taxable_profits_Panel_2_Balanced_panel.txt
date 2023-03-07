@@ -1,0 +1,9 @@
+treatment	statistic	taxable_profits
+Control	mean	10.635
+Control	sd	2.591
+Control	median	10.639
+Control	firms	2244
+Treatment	mean	10.653
+Treatment	sd	2.468
+Treatment	median	10.642
+Treatment	firms	547

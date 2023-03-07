@@ -1,0 +1,9 @@
+treatment	statistic	beneficiarios_total
+Control	mean	1.071
+Control	sd	3.184
+Control	median	0
+Control	firms	5155
+Treatment	mean	1.396
+Treatment	sd	2.306
+Treatment	median	1
+Treatment	firms	1158

@@ -1,0 +1,9 @@
+treatment	statistic	hhi_th
+Control	mean	10.31
+Control	sd	110.389
+Control	median	0
+Control	firms	6330
+Treatment	mean	7350.957
+Treatment	sd	3017.356
+Treatment	median	9604
+Treatment	firms	1376
