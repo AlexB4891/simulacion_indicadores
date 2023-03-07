@@ -114,5 +114,23 @@ output$plot1 <- renderUI({
 ```
 
 
+$$
 
+mean1214_{i} = \frac{x12_{i} + x13_{i} + x14_{i}}{3}
+
+$$
+$$
+
+mean_{1214} = \sum_{i}\frac{mean1214_{i}}{N}
+$$
+$$
+ratio_{it} = \frac{x_{i}}{mean1214_{i}}
+$$
+En el gráfico empleamos la media de este ratio y debe quedar alrededor de 1 en los 3 primeros años por construcción. Separado por grupos de tratamiento y control.
+
+```{r}
+
+
+
+```
 
